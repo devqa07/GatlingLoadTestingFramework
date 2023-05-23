@@ -29,9 +29,3 @@ gatling {
     }
 }
 
-//task gatlingLogback(type: LogbackConfigTask) {
-//    logbackConfigs = ["src/test/resources/logback.xml"]
-//    inputs.files(logbackConfigs)
-//    outputs.files(logbackConfigs)
-//}
-
