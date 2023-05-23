@@ -1,0 +1,37 @@
+plugins {
+    id 'scala'
+    id 'io.gatling.gradle' version '3.5.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation 'io.gatling.highcharts:gatling-charts-highcharts:3.5.1'
+    implementation 'io.gatling:gatling-test-framework:3.5.1'
+    implementation 'org.scala-lang:scala-library:2.12.15'
+    implementation 'org.json:json:20210307'
+    implementation 'org.apache.commons:commons-dbcp2:2.9.0'
+    implementation 'software.amazon.awssdk:secretsmanager:2.17.193'
+    implementation 'software.amazon.awssdk:s3:2.17.193'
+    implementation 'io.netty:netty-tcnative:2.0.52.Final'
+    implementation 'org.json4s:json4s-jackson_2.13:3.6.12'
+    implementation 'com.github.tomakehurst:wiremock:2.27.2'
+    implementation 'org.codehaus.janino:janino:3.1.6' // for conditional check in logback]
+    gatlingImplementation 'io.netty:netty-tcnative:2.0.52.Final'
+}
+
+gatling {
+    simulations {
+        include "**/*Simulation.scala"
+    }
+}
+
+//task gatlingLogback(type: LogbackConfigTask) {
+//    logbackConfigs = ["src/test/resources/logback.xml"]
+//    inputs.files(logbackConfigs)
+//    outputs.files(logbackConfigs)
+//}
+

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="logEnabled" scope="context" value="${log.enabled:-no}"/>
+  <property name="outputLogDir" scope="context" value="${gatling.core.outputDirectoryBaseName:-build}"/>
+
+  <if condition='property("logEnabled").equalsIgnoreCase("yes")'>
+    <then>
+      <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="FILE">
+        <append>false</append>
+        <encoder>
+          <pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{15} - %msg%n%rEx</pattern>
+        </encoder>
+        <file>${outputLogDir}/logs/Request_Response.log</file>
+        <immediateFlush>false</immediateFlush>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+          <fileNamePattern>${outputLogDir}/logs/Request_Response%i.log</fileNamePattern>
+          <maxIndex>21</maxIndex>
+          <minIndex>1</minIndex><!--max allowed is 21-->
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+          <maxFileSize>100MB</maxFileSize>
+        </triggeringPolicy>
+      </appender>
+
+      <logger level="TRACE" name="io.gatling.http.ahc"/>
+      <logger level="TRACE" name="io.gatling.http.response"/>
+      <logger level="TRACE" name="io.gatling.http.engine.response"/>
+
+      <root level="INFO">
+        <appender-ref ref="FILE"/>
+      </root>
+    </then>
+  </if>
+
+</configuration>

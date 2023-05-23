@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/booking/([A-Z0-9]*)"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "bookerservice/GetBookingDetails.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
